@@ -10,6 +10,7 @@ export interface Task {
   title: string;
   completed: boolean;
   createdAt: string;
+  date?: string; // Optional date property
 }
 
 export interface Statistics {

@@ -10,11 +10,21 @@ import TaskChartCard from './components/TaskChartCard';
 import StatisticsCard from './components/StatisticsCard';
 
 function App() {
+  const backgroundImageUrl = "https://example.com/scenic-beach.jpg"; // Replace with your desired image URL
+
   return (
     <ThemeProvider>
       <UserProvider>
         <TaskProvider>
-          <div className="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
+          <div
+            className="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-300"
+            style={{
+              backgroundImage: `url(${backgroundImageUrl})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          >
             <Header />
             <main className="flex justify-center py-6 px-4 sm:px-6 lg:px-8">
               <div className="flex flex-col w-full max-w-7xl space-y-6">
@@ -29,12 +39,12 @@ function App() {
                 </div>
 
                 {/* Statistics Card and Task Statistics Card side by side */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  <div>
-                    <StatisticsCard className="w-full" />
+                <div className="flex items-stretch gap-6">
+                  <div className="w-1/2 h-full min-h-[300px]">
+                    <StatisticsCard className="w-full h-full p-6 rounded-lg shadow-md" />
                   </div>
-                  <div>
-                    <TaskStatisticsCard className="w-full" />
+                  <div className="w-1/2 h-full min-h-[300px]">
+                    <TaskStatisticsCard className="w-full h-full p-6 rounded-lg shadow-md" />
                   </div>
                 </div>
 

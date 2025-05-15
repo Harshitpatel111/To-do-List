@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CheckCircle, Circle, Plus, Trash2, Edit3, Check, X } from 'lucide-react';
+import { CheckCircle, Circle, Plus, Trash2, Edit3, Check, X, Calendar } from 'lucide-react';
 import { useTasks } from '../context/TaskContext';
 
 interface TaskListProps {
@@ -9,14 +9,16 @@ interface TaskListProps {
 const TaskList: React.FC<TaskListProps> = ({ className }) => {
   const { filteredTasks, addTask, toggleTaskCompletion, deleteTask, filterType, setFilterType } = useTasks();
   const [newTaskTitle, setNewTaskTitle] = useState('');
+  const [newTaskDate, setNewTaskDate] = useState('');
   const [editingTaskId, setEditingTaskId] = useState<string | null>(null);
   const [editedTaskTitle, setEditedTaskTitle] = useState('');
 
   const handleAddTask = (e: React.FormEvent) => {
     e.preventDefault();
     if (newTaskTitle.trim()) {
-      addTask(newTaskTitle.trim());
+      addTask(newTaskTitle.trim(), newTaskDate); // Pass the date
       setNewTaskTitle('');
+      setNewTaskDate(''); // Reset the date input
     }
   };
 
@@ -83,6 +85,12 @@ const TaskList: React.FC<TaskListProps> = ({ className }) => {
           placeholder="Add a new task..."
           className="flex-grow p-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
         />
+        <input
+          type="date"
+          value={newTaskDate}
+          onChange={(e) => setNewTaskDate(e.target.value)}
+          className="p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+        />
         <button
           type="submit"
           className="bg-blue-600 text-white px-4 py-2 rounded-r-md hover:bg-blue-700 transition-colors flex items-center"
@@ -144,6 +152,16 @@ const TaskList: React.FC<TaskListProps> = ({ className }) => {
                   >
                     {task.title}
                   </span>
+                  {task.date && (
+                    <span className="flex items-center text-sm text-gray-500 dark:text-gray-400 ml-2">
+                      <Calendar className="mr-1 text-gray-400 dark:text-gray-500" />
+                      {new Date(task.date).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                      })}
+                    </span>
+                  )}
                 </div>
               )}
               <div className="flex items-center space-x-2">

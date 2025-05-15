@@ -4,7 +4,7 @@ import { mockTasks } from '../data/mockData';
 
 interface TaskContextType {
   tasks: Task[];
-  addTask: (title: string) => void;
+  addTask: (title: string, date?: string) => void;
   toggleTaskCompletion: (id: string) => void;
   deleteTask: (id: string) => void;
   filterType: 'all' | 'completed' | 'pending';
@@ -31,12 +31,13 @@ export const TaskProvider: React.FC<{ children: React.ReactNode }> = ({ children
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }, [tasks]);
 
-  const addTask = (title: string) => {
+  const addTask = (title: string, date?: string) => {
     const newTask: Task = {
       id: Date.now().toString(),
       title,
       completed: false,
       createdAt: new Date().toISOString(),
+      date, // Include the optional date
     };
     setTasks((prevTasks) => [...prevTasks, newTask]);
   };
