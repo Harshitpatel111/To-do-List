@@ -14,7 +14,7 @@ const UserContext = createContext<UserContextType | undefined>(undefined);
 const initialUser = {
   name: 'Harshit Bhuva',
   email: 'harshit.bhuva@gmail.com',
-  avatar: '/src/assets/aa.jpg',
+  avatar: 'https://img.freepik.com/premium-vector/avatar-profile-icon-flat-style-male-user-profile-vector-illustration-isolated-background-man-profile-sign-business-concept_157943-38764.jpg',
 };
 
 export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
