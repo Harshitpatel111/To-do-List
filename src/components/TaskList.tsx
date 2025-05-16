@@ -77,23 +77,26 @@ const TaskList: React.FC<TaskListProps> = ({ className }) => {
         </button>
       </div>
       
-      <form onSubmit={handleAddTask} className="flex mb-4">
+      <form
+        onSubmit={handleAddTask}
+        className="flex flex-wrap gap-4 mb-4 items-center justify-between"
+      >
         <input
           type="text"
           value={newTaskTitle}
           onChange={(e) => setNewTaskTitle(e.target.value)}
           placeholder="Add a new task..."
-          className="flex-grow p-2 border border-gray-300 rounded-l-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+          className="flex-grow min-w-[200px] p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
         />
         <input
           type="date"
           value={newTaskDate}
           onChange={(e) => setNewTaskDate(e.target.value)}
-          className="p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+          className="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
         />
         <button
           type="submit"
-          className="bg-blue-600 text-white px-4 py-2 rounded-r-md hover:bg-blue-700 transition-colors flex items-center"
+          className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors flex items-center"
         >
           <Plus className="h-5 w-5" />
         </button>

@@ -1,13 +1,17 @@
 import React from 'react';
 import { useTasks } from '../context/TaskContext';
 
-const StatisticsCard = () => {
+interface StatisticsCardProps {
+  className?: string;
+}
+
+const StatisticsCard: React.FC<StatisticsCardProps> = ({ className }) => {
   const { statistics } = useTasks();
 
   const progress = (statistics.completed / statistics.total) * 100 || 0;
 
   return (
-    <div className="bg-white dark:bg-[#1e293b] p-6 rounded-lg shadow-md transition-colors duration-300 h-full flex flex-col justify-between">
+    <div className={`bg-white dark:bg-[#1e293b] p-6 rounded-lg shadow-md transition-colors duration-300 h-full flex flex-col justify-between ${className}`}>
       <h2 className="text-2xl font-semibold mb-6">Statistics</h2>
       <div className="grid grid-cols-2 gap-4">
         <div className="p-4 rounded-xl shadow-md bg-gradient-to-r from-blue-500 to-blue-700 text-white hover:shadow-lg transition-shadow duration-300">

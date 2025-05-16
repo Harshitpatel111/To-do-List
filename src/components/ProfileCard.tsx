@@ -1,8 +1,12 @@
 import React from 'react';
-import { User, UserCircle, Mail, X, CheckCheck } from 'lucide-react';
+import { User, Mail, X, CheckCheck } from 'lucide-react';
 import { useUser } from '../context/UserContext';
 
-const ProfileCard: React.FC = () => {
+interface ProfileCardProps {
+  className?: string;
+}
+
+const ProfileCard: React.FC<ProfileCardProps> = ({ className }) => {
   const { user, updateUser, isEditingProfile, setIsEditingProfile } = useUser();
   const [formData, setFormData] = React.useState({
     name: user.name,
@@ -31,7 +35,7 @@ const ProfileCard: React.FC = () => {
   };
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 transition-all duration-300 ease-in-out max-w-xs flex flex-col justify-between h-full">
+    <div className={`bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 transition-all duration-300 ease-in-out max-w-xs flex flex-col justify-between h-full ${className}`}>
       <h2 className="text-xl font-semibold text-gray-800 dark:text-white mb-4 flex items-center">
         <User className="mr-2 h-5 w-5" />
         Profile Information

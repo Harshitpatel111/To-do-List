@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Moon, Sun } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { useUser } from '../context/UserContext';
@@ -6,13 +6,11 @@ import { useUser } from '../context/UserContext';
 const Header: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
   const { user } = useUser();
-  const [backgroundImage, setBackgroundImage] = useState<string | null>(null);
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
-      setBackgroundImage(imageUrl);
       const root = document.documentElement;
       root.style.backgroundImage = `url(${imageUrl})`;
       root.style.backgroundSize = 'cover';
@@ -24,7 +22,7 @@ const Header: React.FC = () => {
 
   return (
     <header className="bg-white dark:bg-gray-800 shadow-sm py-4 px-6 transition-all duration-300 ease-in-out relative">
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
         <div className="flex items-center space-x-2">
           <img
             src="https://img.icons8.com/?size=100&id=6xRZJrVWQLNn&format=png&color=000000"
@@ -33,7 +31,7 @@ const Header: React.FC = () => {
           />
           <h1 className="text-xl font-bold text-gray-900 dark:text-white">Floww Dashboard</h1>
         </div>
-        <div className="flex items-center space-x-4">
+        <div className="flex flex-wrap justify-between items-center space-x-4">
           <input
             type="file"
             accept="image/*"
